@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
+import 'package:netflix_clone/presentation/Controller/model_class.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class NumberCard extends StatelessWidget {
-  NumberCard({super.key, required this.index});
+  NumberCard({super.key, required this.index, required this.image});
   int index;
+  String? image;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -12,16 +14,19 @@ class NumberCard extends StatelessWidget {
         Row(
           children: [
             SizedBox(width: 40),
-            Container(
+            SizedBox(
               width: 134,
               height: 200,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    'https://www.movieposters.com/cdn/shop/files/spirtedaway.jap.24x36.jpg?v=1709822795',
-                  ),
-                ),
-                borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                imageBase + image!,
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(child: CircularProgressIndicator(color: Colors.white,));
+                },
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.error, color: Colors.red);
+                },
               ),
             ),
           ],

@@ -6,9 +6,15 @@ class ScreenFastLaugh extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(body: SafeArea(child: PageView(
-      scrollDirection: Axis.vertical,
-      children: List.generate(10, (index)
-    {return VideoListItem(index: index,);}),)));
+    return Scaffold(
+      body: SafeArea(
+        child: PageView(
+          scrollDirection: Axis.vertical,
+          children: List.generate(videoPathList.length, (index) {
+            return VideoListItem(index: index,videoUrl: videoPathList[index],);
+          }),
+        ),
+      ),
+    );
   }
 }

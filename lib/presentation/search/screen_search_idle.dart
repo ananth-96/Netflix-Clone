@@ -2,13 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/colors/colors.dart';
 import 'package:netflix_clone/core/constspacings.dart';
+import 'package:netflix_clone/presentation/Controller/model_class.dart';
 import 'package:netflix_clone/presentation/search/title.dart';
 
 const imageUrl =
     'https://sweetanimatedfilms.wordpress.com/wp-content/uploads/2018/01/hodja-and-the-magic-carpet-3-horizontal-image.jpg';
 
 class ScreenSearchIdle extends StatelessWidget {
-  const ScreenSearchIdle({super.key});
+  final List<Movie> popularMovies;
+  const ScreenSearchIdle({super.key, required this.popularMovies});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +27,12 @@ class ScreenSearchIdle extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: ListView.separated(
-                    itemBuilder: (context, index) => const TopSearchItemTile(),
+                    itemBuilder: (context, index)  {
+                      print(popularMovies[index].posterPath);
+                      return TopSearchItemTile(imageUrl:popularMovies[index].posterPath??defaultImage, title: popularMovies[index].title??'NO Title Available',);
+                    },
                     separatorBuilder: (context, index) => kheight20,
-                    itemCount: 10,
+                    itemCount: popularMovies.length,
                   ),
                 ),
               ),
@@ -41,7 +46,9 @@ class ScreenSearchIdle extends StatelessWidget {
 
 
 class TopSearchItemTile extends StatelessWidget {
-  const TopSearchItemTile({super.key});
+  String title;
+  final String imageUrl;
+   TopSearchItemTile({super.key,required this.imageUrl, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -53,15 +60,15 @@ class TopSearchItemTile extends StatelessWidget {
           width: screenWidth * 0.35,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(imageUrl),
+              image: NetworkImage(imageBase+imageUrl),
               fit: BoxFit.cover,
             ),
           ),
         ),
         const SizedBox(width: 10),
-        const Expanded(
+         Expanded(
           child: Text(
-            'Movie Title',
+            title,
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,

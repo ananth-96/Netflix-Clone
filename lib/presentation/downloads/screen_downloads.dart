@@ -38,9 +38,9 @@ class Section1 extends StatelessWidget {
 class Section2 extends StatelessWidget {
   Section2({super.key});
   final imageList = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxWmDaHTNKfA7cue084WPkgkZJGWIuzllNzw&s",
-    "https://hips.hearstapps.com/hmg-prod/images/best-netflix-animation-little-prince-1585593652.jpg?crop=1xw:1xh;center,top&resize=980:*",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB4MdlxpBxGrFKdWwHcsvY0PMj6H1L1N9hag&s",
+    "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/vNVFt6dtcqnI7hqa6LFBUibuFiw.jpg",
+    "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/r46leE6PSzLR3pnVzaxx5Q30yUF.jpg",
+    "https://media.themoviedb.org/t/p/w600_and_h900_bestv2/aLVkiINlIeCkcZIzb7XHzPYgO6L.jpg",
   ];
 
   @override

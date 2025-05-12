@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/core/constspacings.dart';
+import 'package:netflix_clone/presentation/Controller/model_class.dart';
 import 'package:netflix_clone/presentation/search/title.dart';
 
-const imageUrl =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxWmDaHTNKfA7cue084WPkgkZJGWIuzllNzw&s";
+
 
 class SearchResultWidget extends StatelessWidget {
-  const SearchResultWidget({super.key});
+  final List<Movie> result;
+  const SearchResultWidget({super.key, required this.result});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,9 @@ class SearchResultWidget extends StatelessWidget {
               crossAxisSpacing: 10,
               crossAxisCount: 3,
               childAspectRatio: 1.1/1.55,
-              children: List.generate(20, (index) {
-                return const MainCardSearch();
+              children: List.generate(result.length, (index) {
+                return  MainCardSearch(url: result[index].posterPath?? defaultImage,);
+                
               }),
             ),
           ),
@@ -35,14 +37,15 @@ class SearchResultWidget extends StatelessWidget {
 }
 
 class MainCardSearch extends StatelessWidget {
-  const MainCardSearch({super.key});
+  String url;
+     MainCardSearch({super.key,required this.url});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(imageUrl),
+          image: NetworkImage(imageBase+url),
           fit: BoxFit.cover,
         ),
         borderRadius: BorderRadius.circular(7)
